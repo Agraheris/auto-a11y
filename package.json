@@ -1,5 +1,6 @@
 {
   "name": "auto-a11y",
+  "type": "module",
   "version": "0.0.1",
   "description": "React components where accessibility is automatic, not optional",
   "main": "dist/index.js",
