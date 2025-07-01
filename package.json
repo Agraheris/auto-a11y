@@ -4,9 +4,12 @@
   "description": "React components where accessibility is automatic, not optional",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+"scripts": {
+  "build": "tsc",
+  "dev": "tsc --watch", 
+  "type-check": "tsc --noEmit",
+  "test": "echo 'Tests coming soon'"
+},
   "keywords": ["react", "accessibility", "a11y", "components", "wcag"],
   "author": "Clément Vigouroux",
   "license": "MIT"
