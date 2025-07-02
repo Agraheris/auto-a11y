@@ -1,40 +1,40 @@
+// test.js - Test de la logique Button
+console.log('=== TEST BUTTON LOGIC ===');
+
+// 1. Test import de useId
 function useRef(initial) {
   return { current: initial };
 }
 
-const compteur = {
-  btn: null,
-  inp: null,
-  mod: null,
-  id: null
-};
+const compteur = { btn: null };
 
 function useId(prefix) {
-const finalprefix = prefix ? prefix : "id"
-
-  const value = useRef(null);
-  
-if (value.current === null) {
-    // 1. D'abord gérer le compteur
-    if (compteur[finalprefix] === null) {
-        compteur[finalprefix] = 0;  // Première fois pour ce prefix
-    }
-    compteur[finalprefix] = compteur[finalprefix] + 1;  // Incrémenter
-    
-    // 2. Puis créer l'ID pour cette instance
-    value.current = finalprefix + "-" + compteur[finalprefix];
-}
-  console.log('Compteur:', compteur[finalprefix]);
-  
-  return value.current;
+  const finalPrefix = prefix || "id";
+  if (compteur[finalPrefix] === null) {
+    compteur[finalPrefix] = 0;
+  }
+  compteur[finalPrefix] += 1;
+  return finalPrefix + "-" + compteur[finalPrefix];
 }
 
-// TESTS
-console.log('=== TESTS ===');
-console.log('Test 1:', useId('btn'));
-console.log('Test 2:', useId('btn'));
-console.log('Test 3:', useId('inp'));  // Nouveau prefix
-console.log('Test 4:', useId('inp'));  // Même prefix
-console.log('Test 5:', useId('btn'));  // Retour au btn
-console.log('Test 6:', useId());      // Sans paramètre
-console.log('Test 7:', useId(null));  // Avec null
+// 2. Test simulation Button
+function simulateButton(children, variant, disabled) {
+  const id = useId('btn');
+  const type = "button";
+  const className = variant || 'secondary';
+  
+  console.log('Button generated:');
+  console.log('- ID:', id);
+  console.log('- Children:', children);
+  console.log('- Type:', type);
+  console.log('- ClassName:', className);
+  console.log('- Disabled:', disabled);
+  console.log('---');
+  
+  return { id, children, type, className, disabled };
+}
+
+// 3. Tests
+simulateButton('Save', 'primary', false);
+simulateButton('Cancel', 'secondary', true);
+simulateButton('Delete');

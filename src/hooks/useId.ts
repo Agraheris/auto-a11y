@@ -26,3 +26,5 @@ if (value.current === null) {
   
   return value.current;
 }
+
+export default useId
